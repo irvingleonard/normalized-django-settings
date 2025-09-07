@@ -24,9 +24,6 @@ classifiers = [
 	'Topic :: Internet :: WWW/HTTP',
 	'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
 ]
-dependencies = [
-	'devautotools',
-]
 
 [project.optional-dependencies]
 dev = [

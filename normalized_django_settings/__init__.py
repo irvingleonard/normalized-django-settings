@@ -11,7 +11,7 @@ from os import environ, getenv
 from re import compile as re_compile, search as re_search, IGNORECASE as RE_IGNORECASE
 from warnings import warn
 
-from devautotools._tempfile import mkstemp
+from ._tempfile import mkstemp
 
 __version__ = '0.0.1.dev0'
 
