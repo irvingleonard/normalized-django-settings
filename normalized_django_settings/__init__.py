@@ -13,7 +13,7 @@ from warnings import warn
 
 from ._tempfile import mkstemp
 
-__version__ = '1.1.0.dev2'
+__version__ = '1.1.0.dev3'
 
 LOGGER = getLogger(__name__)
 REQUIRED_SECTION_RE = re_compile(r'(:?.+_required)|(:?required_.+)', RE_IGNORECASE)
