@@ -6,6 +6,9 @@ on:
     branches:
       - stable
 
+env:
+  env-name: Production
+
 jobs:
   build-n-publish-package:
     permissions:
@@ -15,5 +18,19 @@ jobs:
     uses: irvingleonard/reusable-workflows/.github/workflows/python-build-publish-stable-package.yml@v1
     with:
       package-name: ${{ vars.PACKAGE_NAME }}
+      env-name: ${{ env.env-name }}
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-to-pypi:
+    runs-on: ubuntu-latest
+    needs: build-n-publish-package
+    environment: ${{ inputs.env-name}}
+    steps:
+      - name: Getting Build
+        uses: actions/download-artifact@v5
+        with:
+          name: build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
