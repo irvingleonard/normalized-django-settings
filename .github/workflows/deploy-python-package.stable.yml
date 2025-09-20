@@ -17,4 +17,3 @@ jobs:
       package-name: ${{ vars.PACKAGE_NAME }}
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
-      pypi-token: ${{ secrets.PYPI_TOKEN }}
