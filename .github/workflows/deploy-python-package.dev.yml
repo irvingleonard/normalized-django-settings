@@ -16,6 +16,8 @@ jobs:
       contents: write
       id-token: write
     uses: irvingleonard/reusable-workflows/.github/workflows/python-build-publish-development-package.yml@v1
+    env:
+      env-name: ${{ env.env-name }}
     with:
       package-name: ${{ vars.PACKAGE_NAME }}
       env-name: ${{ env.env-name }}
