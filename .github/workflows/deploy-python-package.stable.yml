@@ -21,7 +21,7 @@ jobs:
 
   publish-to-pypi:
     needs: build-n-publish-package
-    if: needs.build-n-publish-package.outputs.built == done
+    if: needs.build-n-publish-package.outputs.result == 'built'
     permissions:
       id-token: write
     runs-on: ubuntu-latest
