@@ -5,7 +5,10 @@ Following the Normalized Django Settings System conventions, the settngs for cer
 from email.utils import getaddresses as parse_email_addresses
 from logging import getLogger
 from pathlib import Path
+from ssl import create_default_context
 from warnings import warn
+
+from certifi import where as certifi_where
 
 from . import normalize_variable_name, path_for_setting, setting_is_true
 
@@ -135,5 +138,9 @@ def normalized_settings(**django_settings):
 		django_settings['ALLOWED_HOSTS'] = django_settings['ENVIRONMENTAL_SETTINGS']['DJANGO_ALLOWED_HOSTS'].split(',')
 	if 'DJANGO_CSRF_TRUSTED_ORIGINS' in django_settings['ENVIRONMENTAL_SETTINGS_KEYS']:
 		django_settings['CSRF_TRUSTED_ORIGINS'] = django_settings['ENVIRONMENTAL_SETTINGS']['DJANGO_CSRF_TRUSTED_ORIGINS'].split(',')
+
+	django_settings['SSL_CONTEXT'] = create_default_context()
+	if not django_settings['SSL_CONTEXT'].cert_store_stats()['x509_ca']:
+		django_settings['SSL_CONTEXT'] = create_default_context(cafile=certifi_where())
 
 	return django_settings

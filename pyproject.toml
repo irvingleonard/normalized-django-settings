@@ -24,6 +24,9 @@ classifiers = [
 	'Topic :: Internet :: WWW/HTTP',
 	'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
 ]
+dependencies = [
+	'certifi',
+]
 
 [project.optional-dependencies]
 dev = [
